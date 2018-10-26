@@ -11,13 +11,11 @@ namespace server.Controllers
     [RoutePrefix("api")]
     public class UserController : ApiController
     {
-        UserService _userService;
-        GlobomanticsContext _globomanticsContext;
+        IUserService _userService;
 
-        public UserController()
+        public UserController(IUserService userService)
         {
-            _globomanticsContext = new GlobomanticsContext();
-            _userService = new UserService(_globomanticsContext);
+            _userService = userService;
         }
 
         [HttpGet]

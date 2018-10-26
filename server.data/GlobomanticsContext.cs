@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace server.data
 {
-    public class GlobomanticsContext : DbContext
+    public class GlobomanticsContext : DbContext, IGlobomanticsContext
     {
         public virtual DbSet<Users> Users { get; set; }
 

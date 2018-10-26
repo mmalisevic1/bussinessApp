@@ -9,12 +9,18 @@ namespace server.services
 {
     public class MappingConfigurations
     {
+        static bool initialized = false;
         public static void Initialize()
         {
+            if (initialized)
+            {
+                return;
+            }
             Mapper.Initialize(cfg =>
             {
                 cfg.AddProfiles(Assembly.GetAssembly(typeof(MappingConfigurations)));
             });
+            initialized = true;
         }
 
         public class TransactionsToTransactionDTO : Profile

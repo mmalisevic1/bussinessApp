@@ -10,24 +10,15 @@ using System.Threading.Tasks;
 
 namespace server.services
 {
-    public class UserService
+    public class UserService : IUserService
     {
-        GlobomanticsContext _globomanticsContext;
+        IGlobomanticsContext _globomanticsContext;
 
-        public UserService(GlobomanticsContext globomanticsContext)
-        {
-            _globomanticsContext = globomanticsContext;
-        }
+        public UserService(IGlobomanticsContext globomanticsContext) => _globomanticsContext = globomanticsContext;
 
-        public async Task<UserDTO> GetUser(Int64 id)
-        {
-            return Mapper.Map<UserDTO>(await _globomanticsContext.Users.FindAsync(id));
-        }
+        public async Task<UserDTO> GetUser(long id) => Mapper.Map<UserDTO>(await _globomanticsContext.Users.FindAsync(id));
 
-        public async Task<UserDTO> GetUser(string email)
-        {
-            return Mapper.Map<UserDTO>(await _globomanticsContext.Users.FirstOrDefaultAsync(f => f.Email == email));
-        }
+        public async Task<UserDTO> GetUser(string email) => Mapper.Map<UserDTO>(await _globomanticsContext.Users.FirstOrDefaultAsync(f => f.Email == email));
 
         public async Task<UserDTO> CreateUser(UserDTO user)
         {

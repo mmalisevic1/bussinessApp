@@ -11,12 +11,9 @@ namespace server.services
 {
     public class TransactionService
     {
-        GlobomanticsContext _globomanticsContext;
+        IGlobomanticsContext _globomanticsContext;
 
-        public TransactionService(GlobomanticsContext globomanticsContext)
-        {
-            _globomanticsContext = globomanticsContext;
-        }
+        public TransactionService(IGlobomanticsContext globomanticsContext) => _globomanticsContext = globomanticsContext;
 
         public IEnumerable<TransactionDTO> GetTransactions(long userId, int year, int month)
         {
